@@ -58,4 +58,9 @@ public class CatalogDao {
         }
         return results.get(0);
     }
+    public CatalogItemVersion saveInactiveStatus(CatalogItemVersion book) {
+        dynamoDbMapper.save(book);
+        return book;
+    }
+
 }

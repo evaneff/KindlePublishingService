@@ -11,7 +11,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConvertedEnum;
 import java.util.Objects;
 
 @DynamoDBTable(tableName = "CatalogItemVersions")
-public class CatalogItemVersion {
+public class  CatalogItemVersion {
     private String bookId;
     private int version;
     private boolean inactive;
@@ -81,6 +81,7 @@ public class CatalogItemVersion {
     }
 
     public void setInactive(boolean active) {
+
         inactive = active;
     }
 
