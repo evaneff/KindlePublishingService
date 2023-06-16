@@ -114,7 +114,7 @@ public class MasteryTaskTwoSubmitBookForPublishingTests extends IntegrationTestB
             "publishing status record %s to have a non null status message.", publishingStatusRecord));    }
 
     @Test
-    public void submitBookForPublishing_bookIdThatDoesNotExist_throwsBookNotFoundException() {
+    public void submitBookForPublishing_bookIdThatDoesNotExist_throwsBookNotFoundException() { // passes on codeGrade
         // GIVEN
         SubmitBookForPublishingRequest submitBookForPublishingRequest = SubmitBookForPublishingRequest.builder()
             .withAuthor("author")

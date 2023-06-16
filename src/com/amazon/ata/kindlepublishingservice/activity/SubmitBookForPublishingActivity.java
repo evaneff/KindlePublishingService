@@ -52,24 +52,31 @@ public class SubmitBookForPublishingActivity {
      * to check the publishing state of the book.
      */
     public SubmitBookForPublishingResponse execute(SubmitBookForPublishingRequest request) {
-        final BookPublishRequest bookPublishRequest = BookPublishRequestConverter.toBookPublishRequest(request);
-        //String requestedBookId = request.getBookId();
-        // TODO: If there is a book ID in the request, validate it exists in our catalog
+
+
+
+        // ensure we have added correct Provider methods and annotated our constructors properly to make inject
+        // our BookPublishRequestManager
+
+        //look up bookID (throw BookNotFoundException)
         //validate book exists
-//        try {
-           catalogDao.validateBookExists(request.getBookId());
-//        } catch (BookNotFoundException e) {
-//
-//        }
+        if (request.getBookId() != null) {
+            catalogDao.validateBookExists(request.getBookId());
+        }
 
-
-
+        //convert SubmitBookForPublishingRequest to BookPublishRequest
+        final BookPublishRequest bookPublishRequest = BookPublishRequestConverter.toBookPublishRequest(request);
+        //addBookPublishRequest(bookPublishRequest)
         bookPublishRequestManager.addBookPublishRequest(bookPublishRequest);
 
+        //setPublishingStatus to QUEUED
+            // add publishing status (PublishingStatusDao)
+        //return PublishingStatusItem
         PublishingStatusItem item =  publishingStatusDao.setPublishingStatus(bookPublishRequest.getPublishingRecordId(),
                 PublishingRecordStatus.QUEUED,
                 bookPublishRequest.getBookId());
 
+        //create and populate SubmitBookForPublishingResponse
         return SubmitBookForPublishingResponse.builder()
                 .withPublishingRecordId(item.getPublishingRecordId())
                 .build();

@@ -44,7 +44,17 @@ public class PublishingStatusDao {
     public PublishingStatusItem setPublishingStatus(String publishingRecordId,
                                                     PublishingRecordStatus publishingRecordStatus,
                                                     String bookId) {
-        return setPublishingStatus(publishingRecordId, publishingRecordStatus, bookId, null);
+
+        String statusMessage = KindlePublishingUtils.generatePublishingStatusMessage(publishingRecordStatus);
+
+        PublishingStatusItem item = new PublishingStatusItem();
+        item.setPublishingRecordId(publishingRecordId);
+        item.setStatus(publishingRecordStatus);
+        item.setStatusMessage(statusMessage);
+        item.setBookId(bookId);
+        dynamoDbMapper.save(item);
+
+        return item;
     }
 
     /**

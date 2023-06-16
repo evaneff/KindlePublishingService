@@ -7,6 +7,7 @@ public class BookPublishRequestManager {
 
     private Queue<BookPublishRequest> requests;
 
+    // accept dependencies into constructor???
     public BookPublishRequestManager() {
         requests = new LinkedList<>();
     }
