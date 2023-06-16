@@ -6,12 +6,12 @@ import java.util.Queue;
 
 public class BookPublishRequestManager {
 
-    private Queue<BookPublishRequest> requests = new LinkedList<>();
+    private Queue<BookPublishRequest> requests;
 
     // accept dependencies into constructor???
     @Inject
     public BookPublishRequestManager() {
-
+        this.requests = new LinkedList<>();
     }
 
     public void addBookPublishRequest(BookPublishRequest bookPublishRequest) {
