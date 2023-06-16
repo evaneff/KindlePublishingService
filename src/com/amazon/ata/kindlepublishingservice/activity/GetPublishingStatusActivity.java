@@ -29,7 +29,6 @@ public class GetPublishingStatusActivity {
                 publishingStatusDao.getPublishingStatuses(publishingStatusRequest.getPublishingRecordId());
 
         // create and populate GetPublishingStatusResponse
-
         // return GetPublishingStatusResponse
         return GetPublishingStatusResponse.builder()
                 .withPublishingStatusHistory(PublishingStatusItemConverter.toPublishStatusRecord(publishingStatusItems))

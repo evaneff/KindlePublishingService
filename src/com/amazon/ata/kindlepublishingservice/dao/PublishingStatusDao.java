@@ -100,6 +100,9 @@ public class PublishingStatusDao {
 
         QueryResultPage<PublishingStatusItem> queryResults = dynamoDbMapper.queryPage(PublishingStatusItem.class, queryExpression);
         List<PublishingStatusItem> publishingStatusItems = queryResults.getResults();
+        if (publishingStatusItems.isEmpty()) {
+            throw new PublishingStatusNotFoundException(String.format("No publishing status found for id: %s", publishingRecordId));
+        }
         // return publishing status items
        return publishingStatusItems;
     }
