@@ -20,7 +20,7 @@ public class BookPublisher {
     private static final Logger log = LogManager.getLogger(BookPublisher.class);
 
     private final ScheduledExecutorService scheduledExecutorService;
-    //private final Runnable publishTask;
+    private final Runnable publishTask;
     private BookPublishTask bookPublishTask;
     private boolean isRunning;
 
@@ -32,10 +32,10 @@ public class BookPublisher {
      */
     @Inject
     public BookPublisher(ScheduledExecutorService scheduledExecutorService,
-                         BookPublishTask bookPublishTask) {
-         //                Runnable publishTask) {
-        //this.publishTask = publishTask;
-        this.bookPublishTask = bookPublishTask;
+                       //  BookPublishTask bookPublishTask) {
+                         Runnable publishTask) {
+        this.publishTask = publishTask;
+        //this.bookPublishTask = bookPublishTask;
         this.scheduledExecutorService = scheduledExecutorService;
     }
 

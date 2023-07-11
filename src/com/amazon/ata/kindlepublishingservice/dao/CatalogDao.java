@@ -75,6 +75,15 @@ public class CatalogDao {
 
         }
     }
+    public CatalogItemVersion createBook(KindleFormattedBook formattedBook) {
+
+    }
+
+    public CatalogItemVersion updateBook(KindleFormattedBook formattedBook) {
+
+    }
+
+
     public CatalogItemVersion createOrUpdateBook(KindleFormattedBook formattedBook) {
         // if adding new book
         if (formattedBook.getBookId() == null) {

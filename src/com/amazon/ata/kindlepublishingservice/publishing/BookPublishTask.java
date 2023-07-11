@@ -37,15 +37,13 @@ public class BookPublishTask implements Runnable {
         BookPublishRequest request = bookPublishRequestManager.getBookPublishRequestToProcess();
 
         // if publishing request is null return??
-        // if publishing request is NOT null
-
-        if (request != null) {
-            // setPublishingStatus(publishingRecordId, IN_PROGRESS, bookId) ->PublishingStatusDao
-            publishingStatusDao.setPublishingStatus(request.getPublishingRecordId(), PublishingRecordStatus.IN_PROGRESS, request.getBookId());
-                    // add publishing status -> DynamoDB
-        } else {
-            //return??
+        if (request == null) {
+        // return??
         }
+        // if publishing request is NOT null
+            // setPublishingStatus(publishingRecordId, IN_PROGRESS, bookId) ->PublishingStatusDao
+        publishingStatusDao.setPublishingStatus(request.getPublishingRecordId(), PublishingRecordStatus.IN_PROGRESS, request.getBookId());
+                    // add publishing status -> DynamoDB
 
         // format -> KindleFormatConverter
         // return KindleFormattedBook
@@ -53,6 +51,7 @@ public class BookPublishTask implements Runnable {
 
         //createOrUpdateBook(KindleFormattedBook) -> CatalogDao
         //return CatalogItemVersion
+
         CatalogItemVersion version = catalogDao.createOrUpdateBook(formattedBook);
 
         //any exception caught while processing
