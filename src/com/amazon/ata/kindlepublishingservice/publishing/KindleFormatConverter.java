@@ -2,12 +2,15 @@ package com.amazon.ata.kindlepublishingservice.publishing;
 
 import com.amazon.ata.kindlepublishing.utils.KindleConversionUtils;
 
+import javax.inject.Inject;
+
 /**
  * Contains methods that help convert a book to its Kindle format.
  */
 public final class KindleFormatConverter {
 
-    private KindleFormatConverter(){}
+    @Inject
+    public KindleFormatConverter(){}
 
     /**
      * Formats the book fields in the provided publishRequest into their kindle format version.

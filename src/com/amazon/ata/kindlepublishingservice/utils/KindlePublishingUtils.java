@@ -4,6 +4,7 @@ import com.amazon.ata.kindlepublishingservice.enums.PublishingRecordStatus;
 
 import com.google.common.collect.ImmutableMap;
 
+import javax.inject.Inject;
 import java.sql.Timestamp;
 import java.util.Map;
 import java.util.UUID;
@@ -16,6 +17,8 @@ public class KindlePublishingUtils {
         PublishingRecordStatus.SUCCESSFUL, "Book published at %s",
         PublishingRecordStatus.FAILED, "Book publish failed at %s"
     );
+    @Inject
+    public KindlePublishingUtils() {}
 
     /**
      * Generates a book id to save into the database.

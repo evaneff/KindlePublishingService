@@ -1,5 +1,6 @@
 package com.amazon.ata.kindlepublishingservice.publishing;
 
+import com.amazonaws.services.dynamodbv2.xspec.B;
 import com.google.common.annotations.VisibleForTesting;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +20,8 @@ public class BookPublisher {
     private static final Logger log = LogManager.getLogger(BookPublisher.class);
 
     private final ScheduledExecutorService scheduledExecutorService;
-    private final Runnable publishTask;
+    //private final Runnable publishTask;
+    private BookPublishTask bookPublishTask;
     private boolean isRunning;
 
     /**
@@ -30,8 +32,10 @@ public class BookPublisher {
      */
     @Inject
     public BookPublisher(ScheduledExecutorService scheduledExecutorService,
-                         Runnable publishTask) {
-        this.publishTask = publishTask;
+                         BookPublishTask bookPublishTask) {
+         //                Runnable publishTask) {
+        //this.publishTask = publishTask;
+        this.bookPublishTask = bookPublishTask;
         this.scheduledExecutorService = scheduledExecutorService;
     }
 
@@ -43,7 +47,7 @@ public class BookPublisher {
             return;
         }
         isRunning = true;
-        scheduledExecutorService.scheduleWithFixedDelay(publishTask, 0, 1, TimeUnit.SECONDS);
+        scheduledExecutorService.scheduleWithFixedDelay(bookPublishTask, 0, 1, TimeUnit.SECONDS);
     }
 
     /**
