@@ -32,7 +32,7 @@ public class BookPublishTask implements Runnable {
 
     @Override
     public void run() {
-        // getBookPublishRRequestToProcess() -> BookPublishRequestManager
+        // getBookPublishRequestToProcess() -> BookPublishRequestManager
         // return BookPublishRequest
         BookPublishRequest request = bookPublishRequestManager.getBookPublishRequestToProcess();
 
@@ -43,6 +43,8 @@ public class BookPublishTask implements Runnable {
             // setPublishingStatus(publishingRecordId, IN_PROGRESS, bookId) ->PublishingStatusDao
             publishingStatusDao.setPublishingStatus(request.getPublishingRecordId(), PublishingRecordStatus.IN_PROGRESS, request.getBookId());
                     // add publishing status -> DynamoDB
+        } else {
+            //return??
         }
 
         // format -> KindleFormatConverter
@@ -53,14 +55,12 @@ public class BookPublishTask implements Runnable {
         //return CatalogItemVersion
         CatalogItemVersion version = catalogDao.createOrUpdateBook(formattedBook);
 
-
-
-
         //any exception caught while processing
         // setPublishingStatus(publishingRecordId, FAILED, bookId, message) -> PublishingStatusDao
                 // add publishing status - DynamoDB
           //else success
            //setPublishingStatus(publishingRecordId, SUCCESSFUL, bookId) -> PublishingStatusDao
                 // add publishing status -> DynamoDB
+        publishingStatusDao.setPublishingStatus(request.getPublishingRecordId(), PublishingRecordStatus.SUCCESSFUL, request.getBookId());
     }
 }
