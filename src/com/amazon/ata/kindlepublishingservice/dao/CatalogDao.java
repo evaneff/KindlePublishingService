@@ -75,13 +75,13 @@ public class CatalogDao {
 
         }
     }
-    public CatalogItemVersion createBook(KindleFormattedBook formattedBook) {
-
-    }
-
-    public CatalogItemVersion updateBook(KindleFormattedBook formattedBook) {
-
-    }
+//    public CatalogItemVersion createBook(KindleFormattedBook formattedBook) {
+//
+//    }
+//
+//    public CatalogItemVersion updateBook(KindleFormattedBook formattedBook) {
+//
+//    }
 
 
     public CatalogItemVersion createOrUpdateBook(KindleFormattedBook formattedBook) {
