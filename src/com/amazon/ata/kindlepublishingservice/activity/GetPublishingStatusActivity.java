@@ -10,6 +10,7 @@ import com.amazon.ata.kindlepublishingservice.models.response.GetPublishingStatu
 import com.amazonaws.services.lambda.runtime.Context;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GetPublishingStatusActivity {
@@ -28,10 +29,15 @@ public class GetPublishingStatusActivity {
         List<PublishingStatusItem> publishingStatusItems =
                 publishingStatusDao.getPublishingStatuses(publishingStatusRequest.getPublishingRecordId());
 
+        List<PublishingStatusRecord> publishingStatusRecords = new ArrayList<>();
+        for (PublishingStatusItem item : publishingStatusItems) {
+            publishingStatusRecords.add(BookPublishRequestConverter.toPublishingStatusRecord(item));
+        }
+
         // create and populate GetPublishingStatusResponse
         // return GetPublishingStatusResponse
         return GetPublishingStatusResponse.builder()
-                .withPublishingStatusHistory(PublishingStatusItemConverter.toPublishStatusRecord(publishingStatusItems))
+                .withPublishingStatusHistory(publishingStatusRecords)
                 .build();
     }
 }

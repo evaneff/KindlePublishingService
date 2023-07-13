@@ -54,8 +54,6 @@ public class SubmitBookForPublishingActivity {
      */
     public SubmitBookForPublishingResponse execute(SubmitBookForPublishingRequest request) {
 
-
-
         // ensure we have added correct Provider methods and annotated our constructors properly to make inject
         // our BookPublishRequestManager
 

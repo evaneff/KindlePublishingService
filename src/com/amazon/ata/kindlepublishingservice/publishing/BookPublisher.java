@@ -21,7 +21,6 @@ public class BookPublisher {
 
     private final ScheduledExecutorService scheduledExecutorService;
     private final Runnable publishTask;
-    private BookPublishTask bookPublishTask;
     private boolean isRunning;
 
     /**
@@ -31,11 +30,8 @@ public class BookPublisher {
      * @param publishTask the task that should be scheduled to publish books
      */
     @Inject
-    public BookPublisher(ScheduledExecutorService scheduledExecutorService,
-                       //  BookPublishTask bookPublishTask) {
-                         Runnable publishTask) {
+    public BookPublisher(ScheduledExecutorService scheduledExecutorService, Runnable publishTask) {
         this.publishTask = publishTask;
-        //this.bookPublishTask = bookPublishTask;
         this.scheduledExecutorService = scheduledExecutorService;
     }
 
@@ -47,7 +43,7 @@ public class BookPublisher {
             return;
         }
         isRunning = true;
-        scheduledExecutorService.scheduleWithFixedDelay(bookPublishTask, 0, 1, TimeUnit.SECONDS);
+        scheduledExecutorService.scheduleWithFixedDelay(publishTask, 0, 1, TimeUnit.SECONDS);
     }
 
     /**
